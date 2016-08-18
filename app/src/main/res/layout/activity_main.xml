@@ -1,34 +1,146 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+<ScrollView android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    tools:context=".MainActivity"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@drawable/background_color"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity"
+    android:paddingBottom="@dimen/activity_vertical_margin">
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:id="@+id/rLayout">
 
-    <EditText
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:id="@+id/searchBar"
-        tools:text="Location..."
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/searchButton" />
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/navBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="4dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Search"
-        android:id="@+id/searchButton"
-        android:layout_alignTop="@+id/searchBar"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="33dp" />
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/cityName"
-        android:layout_below="@+id/searchBar"
+        android:layout_below="@+id/navBar"
+        android:layout_centerHorizontal="true"
+        android:textSize="40dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/coordinates"
+        android:layout_below="@+id/cityName"
         android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/currentSummaryIcon"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/coordinates" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/currentSummary"
+        android:layout_below="@+id/currentSummaryIcon"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:textColor="#000000"
+        android:id="@+id/currentTemperature"
+        android:layout_below="@+id/currentSummary"
+        android:layout_centerHorizontal="true" />
+
+
+    <RelativeLayout
+        android:layout_width="600dp"
+        android:layout_height="80dp"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/currentTemperature"
+        android:id="@+id/currentStats">
+
+        <app.kirinbettadapur.com.weatherdroid.CurrentStatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/rainChance"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true" />
+        <app.kirinbettadapur.com.weatherdroid.CurrentStatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/windChill"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+        <app.kirinbettadapur.com.weatherdroid.CurrentStatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/windSpeed"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true" />
+        <app.kirinbettadapur.com.weatherdroid.CurrentStatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rainChance"
+            android:id="@+id/dewpoint" />
+        <app.kirinbettadapur.com.weatherdroid.CurrentStatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/humidity"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/windChill" />
+        <app.kirinbettadapur.com.weatherdroid.CurrentStatView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cloudcover"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/windSpeed" />
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="This Week"
+        android:id="@+id/weekLabel"
+        android:layout_below="@+id/currentStats"
+        android:layout_alignParentStart="true" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_color"
+        android:elevation="5dp"
+        android:layout_below="@id/weekLabel">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal"
+            android:id="@+id/weekStats">
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
 </RelativeLayout>
+</ScrollView>

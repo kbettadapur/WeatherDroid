@@ -5,32 +5,53 @@ package app.kirinbettadapur.com.weatherdroid;
  */
 public class Forecast {
 
-    private Double lat;
-    private Double lng;
+
+    private String cityName;
+    private String timezone;
+    private Current currentForecast;
+    private Daily dailyForecast;
+    private Hourly hourlyForecast;
+
     private static Forecast instance;
 
     public static Forecast getInstance() {
         if (instance == null) {
-            instance = new Forecast(0.0,0.0);
+            instance = new Forecast();
         }
         return instance;
     }
 
-    public Forecast(Double lat, Double lng) {
-        this.lat = lat;
-        this.lng = lng;
+    private Forecast() {
+        dailyForecast = new Daily();
+        hourlyForecast = new Hourly();
+        currentForecast = new Current();
+        timezone = "";
     }
 
-    public void setLat(Double value) {
-        this.lat = value;
+    public void setCityName(String value) {
+        this.cityName = value;
     }
 
-    public void setLng(Double value) {
-        this.lng = value;
+    public String getCityName() {
+        return this.cityName;
     }
 
-    public Double getLat() {
-        return lat;
+    public String getTimezone() {
+        return this.timezone;
     }
+
+    public void setTimezone(String value) {
+        this.timezone = value;
+    }
+
+    public Current getCurrentForecast() {
+        return currentForecast;
+    }
+
+    public Daily getDailyForecast() {
+        return dailyForecast;
+    }
+
+    public Hourly getHourlyForecast() { return hourlyForecast; }
 }
 
